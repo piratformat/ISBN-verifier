@@ -27,3 +27,8 @@ We have used the following dependencies to make jakarta JAX-RS work with tomcat 
 <b>jersey-container-servlet</b> <br>
 <b>jersey-hk2</b> <br>
 <b>jersey-media-json-jackson</b> <br>
+
+<h3> Licence & author </h3>
+The application is under GNU General public License Version 3, 29 June 2007. <br>
+
+Written by Piratformat - https://github.com/piratformat
