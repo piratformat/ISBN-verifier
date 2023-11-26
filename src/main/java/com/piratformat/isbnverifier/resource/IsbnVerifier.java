@@ -1,6 +1,5 @@
 package com.piratformat.isbnverifier.resource;
 
-import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.core.Response;
 
 public interface IsbnVerifier {

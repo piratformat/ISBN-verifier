@@ -1,7 +1,5 @@
 package com.piratformat.isbnverifier;
 
-import java.util.Arrays;
-
 public class Main
 {
     /**
