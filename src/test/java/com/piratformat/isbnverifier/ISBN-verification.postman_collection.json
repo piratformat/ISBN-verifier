@@ -1,0 +1,98 @@
+{
+	"info": {
+		"_postman_id": "d0c4abd8-cf23-44fe-81ad-6926109e19f2",
+		"name": "ISBN-verification",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31403114"
+	},
+	"item": [
+		{
+			"name": "ISBN10 verification - correct data",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/ISBN/verify/isbn10/{{correctISBN10Value}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ISBN",
+						"verify",
+						"isbn10",
+						"{{correctISBN10Value}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ISBN10 verification - incorrect data",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/ISBN/verify/isbn10/9185057812",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ISBN",
+						"verify",
+						"isbn10",
+						"9185057812"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ISBN10 verification - Chars in param",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/ISBN/verify/isbn10/abcabcabca",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ISBN",
+						"verify",
+						"isbn10",
+						"abcabcabca"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ISBN10 verification - X in isbn10 value",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/ISBN/verify/isbn10/030371655X",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ISBN",
+						"verify",
+						"isbn10",
+						"030371655X"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,5 +1,6 @@
 # ISBN-verifier
-A simple java application for verifying ISBN 10 or ISBN 13 numbers.
+A simple java application for verifying ISBN 10 or ISBN 13 numbers.<br>
+At the time we cannot verify ISBNs which has dashes e.g. 1-84356-028-3.
 
 <h3> Framework used </h3>
 The application runs a version of JAX-RS from jakarta, the reason why it is the jakarta version is that the javax version is deprecated.
@@ -27,6 +28,11 @@ We have used the following dependencies to make jakarta JAX-RS work with tomcat 
 <b>jersey-container-servlet</b> <br>
 <b>jersey-hk2</b> <br>
 <b>jersey-media-json-jackson</b> <br>
+
+<h3>Tests</h3>
+Right now the application only has unit tests written. In the test file <b>IsbnVerfierServiceImplTest.java</b> we use run a group of parameterized tests on the verifiers.
+
+In the test directory there is a postman collection file that works with the application (As long the tomcat server is set att localhost:8080).
 
 <h3> Licence & author </h3>
 The application is under GNU General public License Version 3, 29 June 2007. <br>
