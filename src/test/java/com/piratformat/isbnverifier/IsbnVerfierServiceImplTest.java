@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class IsbnVerfierServiceImplTest {
+class IsbnVerfierServiceImplTest {
     public IsbnVerifierServiceImpl isbnVerifierService = new IsbnVerifierServiceImpl();
 
     static Stream<Arguments> correctISBN10IntArrayProvider() {

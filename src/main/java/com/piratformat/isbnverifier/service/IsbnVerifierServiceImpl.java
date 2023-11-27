@@ -8,11 +8,13 @@ import java.util.regex.Pattern;
  */
 public class IsbnVerifierServiceImpl implements IsbnVerifierService{
 
+    private static final String INCORRECT_ISBN = "Incorrect ISBN";  // Compliant
+
     @Override
     public boolean verifyIsbn10(String inputIsbn) {
 
         inputIsbn = checkForCharsInString(inputIsbn);
-        if (inputIsbn.equals("Incorrect ISBN")) {
+        if (inputIsbn.equals(INCORRECT_ISBN)) {
             return false;
         }
 
@@ -36,7 +38,7 @@ public class IsbnVerifierServiceImpl implements IsbnVerifierService{
     public boolean verifyIsbn13(String inputIsbn) {
 
         inputIsbn = checkForCharsInString(inputIsbn);
-        if (inputIsbn.equals("Incorrect ISBN")) {
+        if (inputIsbn.equals(INCORRECT_ISBN)) {
             return false;
         }
 
@@ -83,7 +85,7 @@ public class IsbnVerifierServiceImpl implements IsbnVerifierService{
 
     private String checkForCharsInString(String inputIsbn) {
         if (!checkIsNumericString(inputIsbn)) {
-            return inputIsbn = changeXsuffix(inputIsbn);
+            return changeXsuffix(inputIsbn);
         }
         return inputIsbn;
     }
@@ -103,7 +105,7 @@ public class IsbnVerifierServiceImpl implements IsbnVerifierService{
             inputIsbn = inputIsbn.substring(0, inputIsbn.length() - 1) + "10";
             return inputIsbn;
         } else {
-            return "Incorrect ISBN";
+            return INCORRECT_ISBN;
         }
     }
 }
