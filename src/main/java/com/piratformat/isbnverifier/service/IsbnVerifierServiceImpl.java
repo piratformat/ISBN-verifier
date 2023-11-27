@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.regex.Pattern;
 
 /**
- * A class to verify ISBN10 codes. <br>
+ * A class to verify ISBN10 & ISBN13 codes. <br>
  */
 public class IsbnVerifierServiceImpl implements IsbnVerifierService{
 
