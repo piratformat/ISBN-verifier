@@ -13,7 +13,7 @@ public class IsbnVerifierServiceImpl implements IsbnVerifierService{
     @Override
     public boolean verifyIsbn10(String inputIsbn) {
 
-        inputIsbn = checkForCharsInString(inputIsbn);
+        inputIsbn = checkForXInString(inputIsbn);
         if (inputIsbn.equals(INCORRECT_ISBN)) {
             return false;
         }
@@ -37,8 +37,7 @@ public class IsbnVerifierServiceImpl implements IsbnVerifierService{
     @Override
     public boolean verifyIsbn13(String inputIsbn) {
 
-        inputIsbn = checkForCharsInString(inputIsbn);
-        if (inputIsbn.equals(INCORRECT_ISBN)) {
+        if(!checkIsNumericString(inputIsbn)) {
             return false;
         }
 
@@ -83,9 +82,15 @@ public class IsbnVerifierServiceImpl implements IsbnVerifierService{
         return outputIsbnIntArray;
     }
 
-    private String checkForCharsInString(String inputIsbn) {
+    private String checkForXInString(String inputIsbn) {
         if (!checkIsNumericString(inputIsbn)) {
-            return changeXsuffix(inputIsbn);
+            if (isbnEndsWithX(inputIsbn)) {
+                // Replace "X" with "10"
+                inputIsbn = inputIsbn.substring(0, inputIsbn.length() - 1) + "10";
+                return inputIsbn;
+            } else {
+                return INCORRECT_ISBN;
+            }
         }
         return inputIsbn;
     }
@@ -99,14 +104,5 @@ public class IsbnVerifierServiceImpl implements IsbnVerifierService{
         return inputIsbn.endsWith("X") || inputIsbn.endsWith("x");
     }
 
-    private String changeXsuffix(String inputIsbn) {
-        if (isbnEndsWithX(inputIsbn)) {
-            // Replace "X" with "10"
-            inputIsbn = inputIsbn.substring(0, inputIsbn.length() - 1) + "10";
-            return inputIsbn;
-        } else {
-            return INCORRECT_ISBN;
-        }
-    }
 }
 

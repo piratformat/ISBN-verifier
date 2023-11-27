@@ -37,7 +37,8 @@ public class IsbnVerifierImpl implements IsbnVerifier{
         if(isbnVerifierServiceImpl.verifyIsbn10(isbn10)) {
             return Response.status(Response.Status.OK).build();
         }
-        return Response.status(Response.Status.OK).entity("Not a correct ISBN10 number.").build();    }
+        return Response.status(Response.Status.OK).entity("Not a correct ISBN10 number.").build();
+    }
 
 
     /**
@@ -49,7 +50,10 @@ public class IsbnVerifierImpl implements IsbnVerifier{
     @Path("/isbn13/{isbn13}")
     @Produces(MediaType.TEXT_PLAIN)
     public Response verifyIsbn13(@PathParam("isbn13") String isbn13) {
-        return null;
+        if(isbnVerifierServiceImpl.verifyIsbn13(isbn13)) {
+            return Response.status(Response.Status.OK).build();
+        }
+        return Response.status(Response.Status.OK).entity("Not a correct ISBN13 number.").build();
     }
 }
 
