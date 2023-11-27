@@ -11,7 +11,7 @@ public class IsbnVerifierServiceImpl implements IsbnVerifierService{
     @Override
     public boolean verifyIsbn10(String inputIsbn) {
 
-        inputIsbn = changeXsuffix(inputIsbn);
+        inputIsbn = checkForCharsInString(inputIsbn);
         if (inputIsbn.equals("Incorrect ISBN")) {
             return false;
         }
@@ -34,7 +34,25 @@ public class IsbnVerifierServiceImpl implements IsbnVerifierService{
 
     @Override
     public boolean verifyIsbn13(String inputIsbn) {
-        return false;
+
+        inputIsbn = checkForCharsInString(inputIsbn);
+        if (inputIsbn.equals("Incorrect ISBN")) {
+            return false;
+        }
+
+        int[] isbnArray = stringToIntArray(inputIsbn);
+
+        if(isbnArray.length != 13) {
+            return false;
+        }
+
+        for (int i = 0; i < isbnArray.length; i++) {
+            if(i % 2 != 0) {
+                isbnArray[i] = isbnArray[i] * 3;
+            }
+        }
+
+        return Arrays.stream(isbnArray).sum() % 10 == 0;
     }
 
     /**
@@ -42,14 +60,32 @@ public class IsbnVerifierServiceImpl implements IsbnVerifierService{
      * inputIsbnString 9185057819 = [9,1,8,5,0,5,7,8,1,9]
      */
     private int[] stringToIntArray(String inputIsbnString) {
-        String[] inputIsbnStringArray = inputIsbnString.split("", 10);
-        int[] outputIsbnIntArray = new int[inputIsbnStringArray.length];
+
+        String[] inputIsbnStringArray;
+        int[] outputIsbnIntArray;
+
+        if (inputIsbnString.length() == 10 || inputIsbnString.length() == 11){
+            inputIsbnStringArray = inputIsbnString.split("", 10);
+            outputIsbnIntArray = new int[inputIsbnStringArray.length];
+        } else if (inputIsbnString.length() == 13) {
+            inputIsbnStringArray = inputIsbnString.split("", 13);
+            outputIsbnIntArray = new int[inputIsbnStringArray.length];
+        } else {
+            return new int[0];
+        }
 
         for (int i = 0; i < inputIsbnStringArray.length; i++) {
             outputIsbnIntArray[i] = Integer.parseInt(inputIsbnStringArray[i]);
         }
 
         return outputIsbnIntArray;
+    }
+
+    private String checkForCharsInString(String inputIsbn) {
+        if (!checkIsNumericString(inputIsbn)) {
+            return inputIsbn = changeXsuffix(inputIsbn);
+        }
+        return inputIsbn;
     }
 
     private boolean checkIsNumericString(String inputIsbn) {
@@ -61,20 +97,14 @@ public class IsbnVerifierServiceImpl implements IsbnVerifierService{
         return inputIsbn.endsWith("X") || inputIsbn.endsWith("x");
     }
 
-    /**
-     * Method to change X to 10 if it occurs in the input string.
-     */
     private String changeXsuffix(String inputIsbn) {
-        if (!checkIsNumericString(inputIsbn)) {
-            if (isbnEndsWithX(inputIsbn)) {
-                // Replace "X" with "10"
-                inputIsbn = inputIsbn.substring(0, inputIsbn.length() - 1) + "10";
-                return inputIsbn;
-            } else {
-                return "Incorrect ISBN";
-            }
+        if (isbnEndsWithX(inputIsbn)) {
+            // Replace "X" with "10"
+            inputIsbn = inputIsbn.substring(0, inputIsbn.length() - 1) + "10";
+            return inputIsbn;
+        } else {
+            return "Incorrect ISBN";
         }
-        return inputIsbn;
     }
 }
 

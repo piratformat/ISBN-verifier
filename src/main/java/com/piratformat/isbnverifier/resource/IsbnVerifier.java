@@ -25,10 +25,6 @@ public interface IsbnVerifier {
     /**
      * Endpoint to verify an ISBN13 (international Standard Book Number) that was established after 2007. <br>
      * <b>The ISBN13 contains 13 numbers</b>: <br>
-     * First 2 numbers = Group<br>
-     * Next 4 numbers = Publisher<br>
-     * Next 3 numbers = Title<br>
-     * Last number = Check digit<br>
      * @param isbn13 string with 10 digits.
      * @return <b>HTTP 200</b> if ISBN is valid.
      */
