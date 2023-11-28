@@ -6,8 +6,11 @@ At the time we cannot verify ISBNs which has dashes e.g. 1-84356-028-3.
 The application runs a version of JAX-RS from jakarta, the reason why it is the jakarta version is that the javax version is deprecated.
 
 <h3> File/Package structure </h3>
+<li><b>Logging</b> package is for logging classes.</li>
 <li><b>Resource</b> package is for endpoint classes.</li>
 <li><b>Service</b> package is for data verification classes & business logic.</li>
+
+**IMPORTANT** If any new classes is added to the JAX-RS structure you will need to add them to getClasses() in App.java. 
 
 <h3>How to run application</h3>
 
